@@ -1,11 +1,14 @@
 package kr.smhrd.model;
 
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import kr.smhrd.model.MemberVO;
 
 public class MemberDAO {
 
@@ -73,6 +76,22 @@ public class MemberDAO {
 		
 		return cnt;
 		
+		
+	}
+	
+	// select method
+	public List<MemberVO> select() {
+		// 1. SqlSession 빌려오기
+		SqlSession session = sqlSessionFactory.openSession(true);
+		
+		// 2. SQL 문장 실행
+		List<MemberVO> list = session.selectList("select");
+		
+		// 3. SqlSession 반환
+		session.close();
+		
+		// 4. 결과 리턴
+		return list;
 		
 	}
 

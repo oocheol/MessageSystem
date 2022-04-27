@@ -12,7 +12,7 @@
 <body>
 <%
 	MemberVO vo = (MemberVO) session.getAttribute("vo");
-
+	out.print(vo);
 %>
 
 	<!-- Wrapper -->
@@ -26,7 +26,11 @@
 				<a href="#menu">로그인</a> 
 			<%} else {%>
 				<a href="LogoutService">로그아웃</a>
-				<a href="update.jsp">개인정보수정</a>
+				<%if (vo.getEmail().equals("admin")) {%>
+					<a href="SelectService">회원관리</a>
+				<%} else { %>
+					<a href="update.jsp">개인정보수정</a>
+				<%} %>
 			<%} %>
 		<!-- 로그인 후 Logout.jsp로 이동할 수 있는'로그아웃'링크와 '개인정보수정'링크를 출력하시오. -->
 		</nav> </header>

@@ -26,6 +26,14 @@
     	set pw = #{pw}, tel = #{tel}, address = #{address}
     	where email = #{email}
     </update>
+    
+    <select
+    id="select"
+    resultType="MemberVO"
+    >
+    	select * from msg_member
+    	where not email='admin'
+    </select>
  	
   
 </mapper>

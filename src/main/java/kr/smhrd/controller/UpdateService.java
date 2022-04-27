@@ -40,6 +40,9 @@ public class UpdateService extends HttpServlet {
 		
 		if (cnt>0) {
 			System.out.println("정보 수정 성공");
+			// 세션 덮어쓰기
+			session.setAttribute("vo", mvo);
+			
 			response.sendRedirect("main.jsp");
 		} else {
 			System.out.println("정보 수정 실패");
