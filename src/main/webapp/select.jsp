@@ -29,6 +29,11 @@
 				<h2>회원관리페이지</h2>
 			</caption>
 
+			<tr>
+				<td>Email</td>
+				<td>Tel</td>
+				<td>Address</td>
+			</tr>
 			<%
 			for (MemberVO vo : list) {
 			%>
@@ -36,10 +41,10 @@
 				<td><%=vo.getEmail()%></td>
 				<td><%=vo.getTel()%></td>
 				<td><%=vo.getAddress()%></td>
+				<!-- X 누르면 삭제하는 것 만들기 -->
+				<td> <a href="DeleteService?email=<%=vo.getEmail()%>">X</a> </td>
 			</tr>
-			<%
-			}
-			%>
+			<% } %>
 
 			<!-- 2.모든 회원의 이메일(email),전화번호(tel),주소(address)를 출력하시오. -->
 		</table>

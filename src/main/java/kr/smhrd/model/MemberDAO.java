@@ -53,14 +53,13 @@ public class MemberDAO {
 		SqlSession session = sqlSessionFactory.openSession(true);
 
 		MemberVO mvo = session.selectOne("login", vo);
-		
+
 		session.close();
-		
+
 		return mvo;
-		
-		
+
 	}
-	
+
 	// update method
 	public int update(MemberVO vo) {
 		// 1. SqlSession 세션 빌려오기
@@ -73,26 +72,36 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 		session.close();
-		
+
 		return cnt;
-		
-		
+
 	}
-	
+
 	// select method
 	public List<MemberVO> select() {
 		// 1. SqlSession 빌려오기
 		SqlSession session = sqlSessionFactory.openSession(true);
-		
+
 		// 2. SQL 문장 실행
 		List<MemberVO> list = session.selectList("select");
-		
+
 		// 3. SqlSession 반환
 		session.close();
-		
+
 		// 4. 결과 리턴
 		return list;
-		
+
 	}
+
+	public int delete(String email) {
+		// 1. SqlSession 빌려오기
+		SqlSession session = sqlSessionFactory.openSession(true);
+		
+		int cnt = session.delete("delete", email);
+		
+		session.close();
+		
+		return cnt;
+		}
 
 }

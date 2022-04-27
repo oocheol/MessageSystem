@@ -35,6 +35,12 @@
     	where not email='admin'
     </select>
  	
+ 	<delete 
+ 	id="delete"
+ 	parameterType="String">
+ 		delete from msg_member
+ 		where email=#{email}
+ 	</delete>
   
 </mapper>
 

@@ -24,13 +24,13 @@ public class SelectService extends HttpServlet {
 		MemberDAO dao = new MemberDAO();
 		List<MemberVO> list = dao.select();
 
+		System.out.println("가져온 회원 수 : " + list.size());
+		
 		// request scope에 데이터 저장
-
+		// 객체 바인딩
 		request.setAttribute("list", list);
 
 		// forward 방식으로 이동
-		// url 경로가 바뀌지 않는다.
-		// 내부 서버(프로젝트 내 파일)로만 이동 가능하다.
 		RequestDispatcher rd = request.getRequestDispatcher("select.jsp");
 		rd.forward(request, response);
 
