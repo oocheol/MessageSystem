@@ -28,6 +28,13 @@ public class LoginService extends HttpServlet {
 		MemberVO mvo = dao.login(vo);
 		
 		// 3. 로그인 성공, 실패 판단
+		if(mvo==null) {
+			// 실패
+			System.out.println("로그인 실패!!");
+		} else {
+			// 성공
+			System.out.println("로그인 성공!!");
+		}
 		
 		// 4. main.jsp로 이동
 	
