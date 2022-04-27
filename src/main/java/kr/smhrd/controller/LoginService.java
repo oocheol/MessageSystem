@@ -37,7 +37,7 @@ public class LoginService extends HttpServlet {
 		}
 		
 		// 4. main.jsp∑Œ ¿Ãµø
-	
+		response.sendRedirect("main.jsp");
 	}
 
 }
