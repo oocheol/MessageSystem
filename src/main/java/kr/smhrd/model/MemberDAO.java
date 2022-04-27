@@ -25,7 +25,6 @@ public class MemberDAO {
 	// ============================================
 
 	// join 메서드
-	// join 메서드
 	public int join(MemberVO vo) {
 		// 1. SqlSession 세션 빌려오기
 		SqlSession session = sqlSessionFactory.openSession(true);
@@ -45,6 +44,7 @@ public class MemberDAO {
 		return cnt;
 	}
 
+	// login method
 	public MemberVO login(MemberVO vo) {
 		// 1. SqlSession 세션 빌려오기
 		SqlSession session = sqlSessionFactory.openSession(true);
@@ -57,12 +57,18 @@ public class MemberDAO {
 		
 		
 	}
+	
+	// update method
 	public int update(MemberVO vo) {
 		// 1. SqlSession 세션 빌려오기
 		SqlSession session = sqlSessionFactory.openSession(true);
 
-		int cnt = session.update("update", vo);
-		
+		int cnt = 0;
+		try {
+			cnt = session.update("update", vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		session.close();
 		
 		return cnt;

@@ -18,25 +18,31 @@ public class UpdateService extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		// 0. 인코딩
+		request.setCharacterEncoding("euc-kr");
+		
 		// 1. 파라미터 수집
-		String email = request.getParameter("email");
 		String pw = request.getParameter("pw");
 		String tel = request.getParameter("tel");
 		String address = request.getParameter("address");
 
-		// vo로 묶기
+		// 세션에서 email 가져오기
 		HttpSession session = request.getSession();
 		MemberVO vo = (MemberVO) session.getAttribute("vo");
-		MemberVO mvo = new MemberVO(vo.getEmail(), pw, tel, address);
+		String email = vo.getEmail();
 		
-
+		// vo로 묶기
+		MemberVO mvo = new MemberVO(email, pw, tel, address);
+		
 		// 2. DAO 메서드 사용
 		MemberDAO dao = new MemberDAO();
 		int cnt = dao.update(mvo);
 		
 		if (cnt>0) {
+			System.out.println("정보 수정 성공");
 			response.sendRedirect("main.jsp");
 		} else {
+			System.out.println("정보 수정 실패");
 			response.sendRedirect("update.jsp");
 		}
 
