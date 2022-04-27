@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 어떤 DAO에서 사용하는지 -->
+<mapper namespace="kr.smhrd.model.MemberDAO">
+   <insert 
+    id="join"
+    parameterType="MemberVO">
+       insert into msg_member
+       values(#{email}, #{pw}, #{tel}, #{address})
+    </insert>
+    
+    <select 
+    id="login" 
+    parameterType="MemberVO"
+    resultType="MemberVO">
+       select * from msg_member
+       where email = #{email}
+       and pw = #{pw}
+    </select>
+ 	
+  
+</mapper>
+
+
+
