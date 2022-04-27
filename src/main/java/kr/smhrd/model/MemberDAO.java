@@ -57,5 +57,17 @@ public class MemberDAO {
 		
 		
 	}
+	public int update(MemberVO vo) {
+		// 1. SqlSession 세션 빌려오기
+		SqlSession session = sqlSessionFactory.openSession(true);
+
+		int cnt = session.update("update", vo);
+		
+		session.close();
+		
+		return cnt;
+		
+		
+	}
 
 }
