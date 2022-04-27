@@ -1,3 +1,4 @@
+<%@page import="kr.smhrd.model.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,14 +10,26 @@
 <link rel="stylesheet" href="assets/css/main.css" />
 </head>
 <body>
+<%
+	MemberVO vo = (MemberVO) session.getAttribute("vo");
+	out.print(vo);
+
+%>
 
 	<!-- Wrapper -->
 	<div id="wrapper">
 
 		<!-- Header -->
 		<header id="header" class="alt"> <a href="index.html"
-			class="logo"><strong>Forty</strong> <span>by HTML5 UP</span></a> <nav>
-		<a href="#menu">로그인</a> <!-- 로그인 후 Logout.jsp로 이동할 수 있는'로그아웃'링크와 '개인정보수정'링크를 출력하시오. -->
+			class="logo"><strong>Forty</strong> <span>by HTML5 UP</span></a> 
+			<nav>
+			<%if(vo == null) { %>
+				<a href="#menu">로그인</a> 
+			<%} else {%>
+				<a href="LogoutService">로그아웃</a>
+				<a>개인정보수정</a>
+			<%} %>
+		<!-- 로그인 후 Logout.jsp로 이동할 수 있는'로그아웃'링크와 '개인정보수정'링크를 출력하시오. -->
 		</nav> </header>
 
 		<!-- Menu -->
@@ -44,7 +57,11 @@
 		<section id="banner" class="major">
 		<div class="inner">
 			<header class="major">
+			<%if(vo==null) {%>
 			<h1>로그인 한 세션아이디를 출력해주세요</h1>
+			<%}else{ %>
+			<h1><%=vo.getEmail() %>님 환영합니다.</h1>
+			<%} %>
 			<!-- 로그인 후 로그인 한 사용자의 세션아이디로 바꾸시오.
 									 ex)smart님 환영합니다 --> </header>
 			<div class="content">
@@ -150,21 +167,34 @@
 			<div class="contact-method">
 				<span class="icon alt fa-envelope"></span>
 				<h3>Email</h3>
+				<% if(vo==null){ %>
 				<a href="#">로그인 한 사람의 이메일을 출력</a>
+				<%} else{ %>
+				<a><%= vo.getEmail() %></a>
+				<%} %>
 				<!-- 로그인 한 사용자의 이메일을 출력하시오 -->
 			</div>
 			</section> <section>
 			<div class="contact-method">
 				<span class="icon alt fa-phone"></span>
 				<h3>Phone</h3>
-				<span>로그인 한 사람의 전화번호를 출력</span>
+				<% if(vo==null){ %>
+				<span>로그인 한 사용자의 전화번호를 출력</span>
+				<%} else{ %>
+				<span><%= vo.getTel() %></span>
+				<%} %>
 				<!-- 로그인 한 사용자의 전화번호를 출력하시오 -->
 			</div>
 			</section> <section>
 			<div class="contact-method">
 				<span class="icon alt fa-home"></span>
 				<h3>Address</h3>
+				<% if(vo==null){ %>
 				<span>로그인 한 사람의 집주소를 출력</span>
+				<%} else{ %>
+				<span><%= vo.getAddress() %></span>
+				<%} %>
+				
 				<!-- 로그인 한 사용자의 집주소를 출력하시오 -->
 			</div>
 			</section> </section>

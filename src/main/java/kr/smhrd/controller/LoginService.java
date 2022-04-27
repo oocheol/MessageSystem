@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import kr.smhrd.model.MemberDAO;
@@ -34,6 +35,10 @@ public class LoginService extends HttpServlet {
 		} else {
 			// 성공
 			System.out.println("로그인 성공!!");
+			
+			// 사용자의 정보 유지 --> Session 이용
+			HttpSession session = request.getSession();
+			session.setAttribute("vo", mvo);
 		}
 		
 		// 4. main.jsp로 이동
