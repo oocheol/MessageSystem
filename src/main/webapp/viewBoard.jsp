@@ -1,3 +1,4 @@
+<%@page import="kr.smhrd.model.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -13,25 +14,29 @@
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 </head>
 <body>
+<% 
+	BoardVO bvo = (BoardVO) request.getAttribute("bvo");
+%>
 				
 			<div id = "board">
 				<table id="list">
 					<tr>
-						<td>제목</td>
+						<td><%= bvo.getTitle() %></td>
 					</tr>
 					<tr>
-						<td>작성자</td>
+						<td><%= bvo.getWriter() %></td>
 					</tr>
 					<tr>
-						<td colspan="2">내용</td>
+						<%--\n --%>
+						<td colspan="2"><%= bvo.getContent().replace("\n", "<br>") %></td>
 					</tr>
 					<tr>
 						<td colspan="2">
-							
+							<img alt="" src="img/<%=bvo.getFileName() %>">
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2"><a href="boardMain.jsp"><button>뒤로가기</button></a></td>
+						<td colspan="2"><a href="ListService"><button>뒤로가기</button></a></td>
 					</tr>
 				</table>
 			</div>

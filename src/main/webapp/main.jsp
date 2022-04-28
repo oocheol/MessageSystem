@@ -30,6 +30,7 @@
 					<a href="SelectService">회원관리</a>
 				<%} else { %>
 					<a href="update.jsp">개인정보수정</a>
+					<a href="ListService">게시판</a>
 				<%} %>
 			<%} %>
 		<!-- 로그인 후 Logout.jsp로 이동할 수 있는'로그아웃'링크와 '개인정보수정'링크를 출력하시오. -->

@@ -8,6 +8,7 @@
 <typeAliases>
 	<!-- 데이터 타입 별 alias 설정 -->
 	<typeAlias type="kr.smhrd.model.MemberVO" alias="MemberVO"/>
+	<typeAlias type="kr.smhrd.model.BoardVO" alias="BoardVO"/>
 
 </typeAliases>
 
@@ -25,5 +26,6 @@
   <mappers>
   <!-- SQL작성된 xml파일의 위치 -->
     <mapper resource="kr/smhrd/mapper/MemberMapper.xml"/>
+    <mapper resource="kr/smhrd/mapper/BoardMapper.xml"/>
   </mappers>
 </configuration>

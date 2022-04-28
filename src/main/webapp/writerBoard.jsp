@@ -15,23 +15,23 @@
 <body>
 
 			<div id = "board">
-				<form >
+				<form action="WriteService" method="post" enctype="multipart/form-data">
 				<table id="list">
 					<tr>
 						<td>제목</td>
-						<td><input type="text" > </td>
+						<td><input type="text" name="title"> </td>
 					</tr>
 					<tr>
 						<td>작성자</td>
-						<td><input  type="text" > </td>
+						<td><input  type="text" name="writer"> </td>
 					</tr>
 					<tr>
 						<td colspan="2">내용</td>
 					</tr>
 					<tr>
 						<td colspan="2">
-							<input  type="file" style="float: right;">
-							<textarea  rows="10" style="resize: none;"></textarea>			
+							<input  type="file" style="float: right;" name="file">
+							<textarea  rows="10" style="resize: none;" name="content"></textarea>			
 						</td>
 					</tr>
 					<tr>
