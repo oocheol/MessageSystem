@@ -96,12 +96,28 @@ public class MemberDAO {
 	public int delete(String email) {
 		// 1. SqlSession 빌려오기
 		SqlSession session = sqlSessionFactory.openSession(true);
-		
+
 		int cnt = session.delete("delete", email);
+
+		session.close();
+
+		return cnt;
+	}
+
+	// emailCheck method
+	public MemberVO emailCheck(String email) {
+		// 1. SqlSession 빌려오기
+		SqlSession session = sqlSessionFactory.openSession(true);
+
+		// 2. Sql문 실행
+		MemberVO vo = session.selectOne("emailCheck", email);
 		
+		// 3. SQLSession 반환
 		session.close();
 		
-		return cnt;
-		}
+		return vo;
+		
+		
+	}
 
 }

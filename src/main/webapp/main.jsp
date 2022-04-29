@@ -50,6 +50,10 @@
 			<li><h5>회원가입</h5></li>
 			<form action="JoinService" method="post">
 				<li><input name="email" type="text" placeholder="Email을 입력하세요"></li>
+				<li>
+					<p id="result"></p>
+					<button onClick="emailCheck()" id="check_btn" type="button">중복확인</button>
+				</li>
 				<li><input name="pw" type="password" placeholder="PW를 입력하세요"></li>
 				<li><input name="tel" type="text" placeholder="전화번호를 입력하세요"></li>
 				<li><input name="address" type="text" placeholder="집주소를 입력하세요"></li>
@@ -237,6 +241,43 @@
 	<script src="assets/js/util.js"></script>
 	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 	<script src="assets/js/main.js"></script>
+	<script type="text/javascript">
+		function emailCheck(){
+			// 1. 데이터 수집
+			// $('input[name=email]') --> 2개, 배열
+			let inputs = $('input[name=email]');
+			let email = $(inputs[1]).val();
+			console.log(email);
+			
+			// 2. ajax 통신
+			$.ajax({
+				url : 'CheckService',
+				type : 'post',
+				data : {
+					"email" : email
+				},
+				// dataType : 'json',
+				success : function(res){
+					console.log(res);
+					// 결과를 html에 출력
+					if (res == 'true'){
+						// p태그에 결과 출력
+						$('#result').html('사용할 수 있는 이메일입니다.').css('color','green');
+					} else{
+						// p태그에 결과 출력
+						$('#result').html('중복된 이메일입니다.');
+						$('#result').css('color','red');
+					}
+				},
+				error : function(){
+					alert('error!');
+				}
+			});
+			
+			
+		}
+	</script>
+	
 
 </body>
 </html>
