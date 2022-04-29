@@ -57,7 +57,7 @@
 				<li><input name="pw" type="password" placeholder="PW를 입력하세요"></li>
 				<li><input name="tel" type="text" placeholder="전화번호를 입력하세요"></li>
 				<li><input name="address" type="text" placeholder="집주소를 입력하세요"></li>
-				<li><input type="submit" value="JoinUs" class="button fit"></li>
+				<li><input id="JoinBtn" disabled type="submit" value="JoinUs" class="button fit"></li>
 			</form>
 		</ul>
 		</nav>
@@ -262,7 +262,12 @@
 					// 결과를 html에 출력
 					if (res == 'true'){
 						// p태그에 결과 출력
-						$('#result').html('사용할 수 있는 이메일입니다.').css('color','green');
+						$('#result').html('사용할 수 있는 이메일입니다.');
+						// css style 조정 .css('sytle이름', '변경할 값')
+						$('#result').css('color','green');
+						// Join버튼의 disabled 속성을 제거
+						$('#JoinBtn').removeAttr('disabled');
+						
 					} else{
 						// p태그에 결과 출력
 						$('#result').html('중복된 이메일입니다.');
