@@ -17,22 +17,10 @@
 
 </head>
 <body>
-	<%
-	// request 영역에 저장해둔 list 꺼내기
-	List<BoardVO> list = (List<BoardVO>) request.getAttribute("list");
-	%>
-
+	
 	<div id="board">
 		<table id="list">
 			<thead>
-				<tr>
-					<td colspan="3"><input name="search" type="text"></td>
-					<td align="left">
-						<button onclick="boardSearch()">검색</button>
-					</td>
-
-				</tr>
-
 				<tr>
 					<td>번호</td>
 					<td>제목</td>
@@ -41,20 +29,16 @@
 				</tr>
 			</thead>
 			<tbody>
-				<%
-				for (BoardVO bvo : list) {
-				%>
+	
 				<tr>
-					<td><%=bvo.getNum()%></td>
+					<td></td>
 					<%-- 쿼리스트링 : ?name=value&name2=value2... --%>
-					<td><a href="ViewService?num=<%=bvo.getNum()%>"><%=bvo.getTitle()%>
+					<td><a href="ViewService?num=">
 					</a></td>
-					<td><%=bvo.getWriter()%></td>
-					<td><%=bvo.getDay()%></td>
+					<td></td>
+					<td></td>
 				</tr>
-				<%
-				}
-				%>
+				
 			</tbody>
 
 		</table>
@@ -73,35 +57,20 @@
 	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 	<script src="assets/js/main.js"></script>
 	<script type="text/javascript">
-		function boardSearch() {
-			// 1. 데이터 수집
-			let data = $('input[name=search]').val();
-
-			// 2. ajax 통신
+		$(document).ready(function(){
+			console.log("시작");
 			$.ajax({
-				url : 'SearchService',
-				type : 'post',
-				data : {
-					"data" : data
-				},
-				dataType : 'json',
+				url : "BoardService",
+				type : "post",
+				dataType : "json",
 				success : function(res) {
 					console.log(res);
-					// 1. tbody 초기화
-
-					// 2. for문 이용 tr을 append
-
-					// 3. input태그 val에 빈문자열 넣기
-
 				},
 				error : function() {
 					alert('error!');
 				}
-
-			});
-
-		}
+			})
+		})
 	</script>
-
 </body>
 </html>

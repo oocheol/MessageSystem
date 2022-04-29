@@ -32,6 +32,13 @@
  		select * from msg_board
  		where num = #{num}
  	</select>
+ 	
+ 	<select 
+ 	id="search"
+ 	resultType="BoardVO">
+ 		select * from msg_board
+ 		where title like #{data}
+ 	</select>
   
   
 </mapper>

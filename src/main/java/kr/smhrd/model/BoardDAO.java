@@ -80,4 +80,21 @@ public class BoardDAO {
 
 	}
 
+	// search method
+	public List<BoardVO> search(String data) {
+
+		// 1. SqlSession 빌려오기
+		SqlSession session = sqlSessionFactory.openSession(true);
+
+		// 2. SQL문 사용
+		List<BoardVO> list = session.selectList("search", data);
+
+		// 3. SQL session 반환
+		session.close();
+
+		// 결과 리턴
+		return list;
+
+	}
+
 }
